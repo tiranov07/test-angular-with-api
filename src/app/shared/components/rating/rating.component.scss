@@ -1,0 +1,15 @@
+.rating-star {
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+
+.rating-star.withHalf {
+    position: absolute;
+    padding: 0.8rem 0.45rem;
+    height: 1rem;
+    content: '&nbsp;';
+}
+
+.rating-star:not(.withHalf) {
+    padding: 0 0.3rem;
+}

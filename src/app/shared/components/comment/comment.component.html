@@ -1,0 +1,18 @@
+<div *ngIf="ReadOnly else edit">
+    <label for="exampleFormControlTextarea1">Комментарий: </label>
+    <p class="pl-3 pr-3">{{comment}}</p>
+</div>
+
+<ng-template #edit>
+    <div class="form-group">
+        <label for="exampleFormControlTextarea1">Комментарий: </label>
+        <textarea 
+            [(ngModel)]="comment"
+            class="form-control" 
+            id="exampleFormControlTextarea1" 
+            rows="3"
+            placeholder="Введите комментарий" >
+        </textarea>
+    </div>
+    <button class="btn btn-primary" (click)="saveComment()" >Сохранить</button>
+</ng-template>

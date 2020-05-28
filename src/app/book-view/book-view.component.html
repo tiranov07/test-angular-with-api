@@ -1,0 +1,31 @@
+<div class="container mt-5">
+    <div class="row">
+        <ng-container *ngIf="Book">
+            <div class="col-xs-12 col-md-4 col-lg-3 text-center">
+                <img class="mb-4" src="{{Book.coverUrl}}" alt="{{Book.title}}" />
+                <div class="book-rating pt-3 pb-3">
+                    <app-rating #rating [BookISBN]="Isbn" [Editable]="true"></app-rating>
+                </div>
+                <button type="button" (click)="goBack()" class="btn btn-secondary btn-sm">Вернуться</button>
+            </div>
+            <div class="col-xs-12 col-md-8 col-lg-9">
+                <h3>{{Book.title}}</h3>
+                <h5>{{Book.authors}}</h5>
+                <p>Год издания: {{Book.publishYear}}</p>
+                <p>Количество страниц: {{Book.pagesCount}}</p>
+                <div class="row pt-3">
+                    <div class="col-12">
+                        <app-comment [BookISBN]="Isbn"></app-comment>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+        <ng-container *ngIf="!Book">
+            <div class="col-12 text-center">
+                <div class="spinner-border" role="status">
+                    <span class="sr-only">Загрузка книги...</span>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+</div>

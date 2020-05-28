@@ -1,0 +1,14 @@
+<div class="input-group search-panel mb-3">
+    <input class="form-control" 
+        [(ngModel)]="SearchValue"
+        (change)="search(SearchValue)"
+        name="search"
+        type="text" 
+        placeholder="Введите название книги" 
+    />
+    <div class="input-group-append">
+        <button type="button" class="btn btn-secondary" (click)="searchClear()">
+            <fa-icon [icon]="faTimes"></fa-icon>
+        </button>
+    </div>
+</div>

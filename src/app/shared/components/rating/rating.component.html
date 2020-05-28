@@ -1,0 +1,16 @@
+<div *ngIf="RatingArray" class="rating-stars">
+    <ng-container *ngFor="let item of RatingArray; let i=index">
+        <span id="rating_{{item.value}}" 
+                class="rating-star" 
+                [class.withHalf]="item.withHalf" 
+                (click)="changeRating(item.value)" >
+            <ng-container *ngIf="item.value - 0.5 == Rating; else elseTemplate">
+                <fa-icon *ngIf="!item.withHalf" [icon]="faStarHalfAlt"></fa-icon>
+            </ng-container>
+            <ng-template #elseTemplate>
+                <fa-icon *ngIf="!item.withHalf && !item.checked" [icon]="farStar"></fa-icon>
+                <fa-icon *ngIf="!item.withHalf && item.checked" [icon]="faStar"></fa-icon>    
+            </ng-template>
+        </span>
+    </ng-container>
+</div>
