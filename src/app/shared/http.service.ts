@@ -80,29 +80,6 @@ export class HttpService {
         }))
     }
 
-    /* public searchBooks(urlParams: Dictionary<string, string>): Observable<Book[]> {
-        console.log('searchBooks()');
-        let httpParams = this.getHttpParams(urlParams);
-        let headers = new Dictionary<string, string>();
-        let Options = this.GetOptions(headers, httpParams);
-        let Url = this.Server;
-        return this.http.get(Url, Options).pipe(map(data=>{
-            console.log('api data:', data);
-            let BookList = data['docs'];
-            console.log('api BookList: ', BookList );
-            return BookList.map( function(item) {
-                let book: Book = { 
-                    isbn: item.isbn,
-                    title: item.title,
-                    authors: item.author_name,
-                    publishYear: item.first_publish_year,
-                }
-                return book
-            } )
-
-        }))
-    } */
-
     private getHttpParams(urlParams: Dictionary<string, string>) {
         if (urlParams && urlParams.Count() > 0) {
             let httpParams = new HttpParams();

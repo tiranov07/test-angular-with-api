@@ -1,6 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { faSearch, faTimes } from '@fortawesome/free-solid-svg-icons';
-import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-search-panel',
@@ -12,7 +11,7 @@ export class SearchPanelComponent implements OnInit {
   @Output() changedSearchValue: EventEmitter<string> = new EventEmitter<string>();
   faSearch = faSearch;
   faTimes = faTimes;
-  constructor(private sanitizer: DomSanitizer) { }
+  constructor() { }
 
   ngOnInit(): void {
   }

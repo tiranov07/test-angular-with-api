@@ -40,7 +40,4 @@ const appRoutes: Routes = [
   bootstrap: [AppComponent]
 })
 export class AppModule {
-  /* constructor(private library: FaIconLibrary) {
-    library.addIcons(faSquare, faCheckSquare, farSquare, farCheckSquare);
-  } */
 }

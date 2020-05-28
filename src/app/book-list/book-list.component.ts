@@ -3,7 +3,6 @@ import { Router } from "@angular/router";
 import { HttpService } from "../shared/http.service";
 import { Dictionary } from "../shared/classes/Dictionary";
 import { Book } from "../shared/types/Book";
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-book-list',
