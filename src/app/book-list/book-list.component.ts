@@ -1,20 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
-import { HttpService } from "../shared/http.service";
-import { Dictionary } from "../shared/classes/Dictionary";
-import { Book } from "../shared/types/Book";
+import { BooksService } from "../services/books.service";
+import { Dictionary } from "../shared/models/Dictionary";
+import { Book } from "../shared/models/Book";
 
 @Component({
   selector: 'app-book-list',
   templateUrl: './book-list.component.html',
   styleUrls: ['./book-list.component.scss'],
-  providers: [HttpService]
+  providers: [BooksService]
 })
 export class BookListComponent implements OnInit {
   Books: Book[];
   BooksCount: number;
   SearchString: string = 'Hobbit';
-  constructor(private httpService: HttpService, private router: Router) { }
+  constructor(private bookSrv: BooksService, private router: Router) { }
 
   ngOnInit(): void {
     this.searchBooks(this.SearchString);
@@ -31,11 +31,11 @@ export class BookListComponent implements OnInit {
     this.SearchString = searchString;
     let SearchParams = new Dictionary<string,string>();
     SearchParams.Add('q',searchString);
-    this.httpService.searchBooks(SearchParams).subscribe(data => {
+    this.bookSrv.searchBooks(SearchParams).subscribe(data => {
       if (data) {
         this.Books = data;
         this.BooksCount = data.length;
-        console.log('this.Books: ', this.Books);
+        console.log('BookListComponent -> searchBooks -> this.Books: ', this.Books);
       }
     });
   }

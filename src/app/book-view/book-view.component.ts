@@ -1,14 +1,14 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from "@angular/router";
 import { Location } from '@angular/common';
-import { HttpService } from "../shared/http.service";
-import { BookInfo } from "../shared/types/Book";
+import { BooksService } from "../services/books.service";
+import { BookInfo } from "../shared/models/Book";
 
 @Component({
   selector: 'app-book-view',
   templateUrl: './book-view.component.html',
   styleUrls: ['./book-view.component.scss'],
-  providers: [HttpService]
+  providers: [BooksService]
 })
 export class BookViewComponent implements OnInit {
   Isbn: string;
@@ -16,7 +16,7 @@ export class BookViewComponent implements OnInit {
   @ViewChild('rating') RatingComponent;
   constructor( 
     private ActiveRoute: ActivatedRoute, 
-    private http: HttpService, 
+    private bookSrv: BooksService, 
     private location: Location 
   ) { }
 
@@ -24,7 +24,10 @@ export class BookViewComponent implements OnInit {
     this.Isbn = this.ActiveRoute.snapshot.params['isbn'];
     console.log('BookViewComponent this.Isbn: ',this.Isbn);
     if (this.Isbn && this.Isbn.length > 0) {
-      this.http.getBookByISBN(this.Isbn).subscribe(data => this.Book = data);
+      this.bookSrv.getBookByISBN(this.Isbn).subscribe(data => {
+        this.Book = data;
+        console.log('BookViewComponent -> this.Book: ', this.Book);
+      });
     }
   }
 

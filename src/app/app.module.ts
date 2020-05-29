@@ -5,7 +5,8 @@ import { RouterModule, Routes } from "@angular/router";
 import { FormsModule }   from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HttpService } from "./shared/http.service";
+import { HttpService } from "./services/http.service";
+import { BooksService } from "./services/books.service";
 import { BookListComponent } from './book-list/book-list.component';
 import { BookViewComponent } from './book-view/book-view.component';
 import { CommentComponent } from './shared/components/comment/comment.component';
@@ -36,7 +37,7 @@ const appRoutes: Routes = [
     FormsModule,
     FontAwesomeModule
   ],
-  providers: [HttpService],
+  providers: [HttpService, BooksService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
