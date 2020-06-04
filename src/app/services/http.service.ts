@@ -62,6 +62,7 @@ export class HttpService {
             );
         }
         // return an observable with a user-facing error message
+        console.log(`error`, error);
         return throwError('Something bad happened; please try again later.');
     };
 

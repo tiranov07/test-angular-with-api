@@ -1,11 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule, Routes } from "@angular/router";
 import { FormsModule }   from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpService } from "./services/http.service";
+import { HttpInterceptor } from "@angular/common/http"
+import { CacheInterceptor } from "./services/cache.interceptor";
+import { RequestCacheService } from "./services/requestCache.service";
 import { BooksService } from "./services/books.service";
 import { BookListComponent } from './book-list/book-list.component';
 import { BookViewComponent } from './book-view/book-view.component';
@@ -37,7 +40,11 @@ const appRoutes: Routes = [
     FormsModule,
     FontAwesomeModule
   ],
-  providers: [HttpService, BooksService],
+  providers: [HttpService, BooksService, RequestCacheService, {
+    provide: HTTP_INTERCEPTORS,
+    useClass: CacheInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule {
