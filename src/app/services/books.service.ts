@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable, throwError } from 'rxjs';
 import { HttpService } from "./http.service";
-import { retry, catchError, map } from 'rxjs/operators';
+import { retry, catchError, map, filter } from 'rxjs/operators';
 import { Config } from "../shared/config";
 import { Dictionary } from "../shared/models/Dictionary";
 import { Book, BookInfo } from "../shared/models/Book";
@@ -16,7 +16,7 @@ export class BooksService {
         let url = '/search.json';
         let result: Observable<Book[]> = this.httpServ.GetRequest(url, urlParams).pipe(
             map( data => {
-                let books: Book[] = data['docs'].map( function (item) {
+                let books: Book[] = data['docs'].filter(item => item.isbn).map( function (item) {
                     let book = new Book;
                     book.isbn = item.isbn ? item.isbn[0] : undefined,
                     book.title = item.title;

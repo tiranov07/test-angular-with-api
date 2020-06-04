@@ -1,0 +1,19 @@
+<nav aria-label="Page navigation example">
+    <ul class="pagination">
+        <li *ngIf="CurrentPage > 1" class="page-item">
+            <a class="page-link" (click)="setPreviousPage()" href="#" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+        <ng-container *ngFor="let item of Pages">
+            <li class="page-item" [ngClass]="{'active': item == CurrentPage}">
+                <a class="page-link"  (click)="setPage(item)" href="#">{{item}}</a>
+            </li>
+        </ng-container>
+        <li *ngIf="CurrentPage < CountPages" class="page-item">
+            <a class="page-link" (click)="setNextPage()" href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+    </ul>
+</nav>

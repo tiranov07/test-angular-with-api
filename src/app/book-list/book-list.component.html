@@ -3,10 +3,16 @@
         <div class="col-xs-12 col-md-8 col-lg-6">
             <h3 class="mb-3">Книги</h3>
             <app-search-panel (changedSearchValue)="searchBooks($event)" ></app-search-panel>
+            <p>Найдено: {{BooksCount}}</p>
         </div>
     </div>
-    <ng-container *ngIf="Books && Books.length > 0">
-        <div class="row" *ngFor="let Book of Books">
+    <ng-container *ngIf="PageBooks && PageBooks.length > 0">
+        <div class="row">
+            <div class="col-12 text-center d-flex justify-content-center">
+                <app-paginator [CurrentPage]="CurrentPage" [CountElements]="Books.length" (changePage)="setPage($event)" ></app-paginator>
+            </div>
+        </div>
+        <div class="row" *ngFor="let Book of PageBooks">
             <div class="col-12">
                 <div class="card mb-3">
                     <div class="card-body">
@@ -22,10 +28,14 @@
                     </div>
                 </div>
             </div>
-            
+        </div>
+        <div class="row">
+            <div class="col-12 text-center d-flex justify-content-center">
+                <app-paginator [CurrentPage]="CurrentPage" [CountElements]="Books.length" (changePage)="setPage($event)" ></app-paginator>
+            </div>
         </div>
     </ng-container>
-    <ng-container *ngIf="!Books">
+    <ng-container *ngIf="!PageBooks">
         <div class="col-12 text-center">
             <div class="spinner-border" role="status">
                 <span class="sr-only">Загрузка книг...</span>

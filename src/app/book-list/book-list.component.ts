@@ -14,6 +14,9 @@ export class BookListComponent implements OnInit {
   Books: Book[];
   BooksCount: number;
   SearchString: string = 'Hobbit';
+  BooksPerPage: number = 10;
+  PageBooks: Book[];
+  CurrentPage: number = 1;
   constructor(private bookSrv: BooksService, private router: Router) { }
 
   ngOnInit(): void {
@@ -35,9 +38,18 @@ export class BookListComponent implements OnInit {
       if (data) {
         this.Books = data;
         this.BooksCount = data.length;
+        this.setPage(this.CurrentPage);
         console.log('BookListComponent -> searchBooks -> this.Books: ', this.Books);
       }
     });
+  }
+
+  setPage(PageNumber: number = 1) {
+    if (PageNumber < 1 || !this.Books) return
+    this.CurrentPage = PageNumber;
+    let Start: number = (PageNumber - 1) * this.BooksPerPage;
+    let End: number = Start + this.BooksPerPage;
+    this.PageBooks = this.Books.slice(Start, End);
   }
 
 }

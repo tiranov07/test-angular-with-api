@@ -17,6 +17,7 @@ import { RatingComponent } from './shared/components/rating/rating.component';
 
 import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome';
 import { SearchPanelComponent } from './shared/components/search-panel/search-panel.component';
+import { PaginatorComponent } from './shared/components/paginator/paginator.component';
 
 const appRoutes: Routes = [
   { path: '', component: BookListComponent },
@@ -30,7 +31,8 @@ const appRoutes: Routes = [
     BookViewComponent,
     CommentComponent,
     RatingComponent,
-    SearchPanelComponent
+    SearchPanelComponent,
+    PaginatorComponent
   ],
   imports: [
     BrowserModule,
